@@ -1,9 +1,9 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.2.61'
+    id 'org.jetbrains.kotlin.jvm' version '1.2.70'
 }
 
 group 'com.hieupt'
-version '1.0-SNAPSHOT'
+version '1.0'
 
 repositories {
     mavenCentral()

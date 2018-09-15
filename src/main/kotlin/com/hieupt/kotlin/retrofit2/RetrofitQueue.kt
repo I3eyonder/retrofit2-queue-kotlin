@@ -58,7 +58,7 @@ class RetrofitQueue(maxActiveRequest: Int = DEFAULT_MAX_REQUEST_ACTIVE) {
      * @param request  request call
      * @param callback callback
      * @param <T>      Type of response data
-    </T> */
+     */
     @Synchronized
     fun <T> addRequest(request: Call<T>, callback: Callback<T>?) {
         val requestWrap = Request(request, callback)
@@ -72,7 +72,7 @@ class RetrofitQueue(maxActiveRequest: Int = DEFAULT_MAX_REQUEST_ACTIVE) {
      * @param request  request call
      * @param callback callback
      * @param <T>      Type of response data
-    </T> */
+     */
     @Synchronized
     fun <T> addRequestToFrontQueue(request: Call<T>, callback: Callback<T>?) {
         val requestWrap = Request(request, callback)
@@ -86,7 +86,7 @@ class RetrofitQueue(maxActiveRequest: Int = DEFAULT_MAX_REQUEST_ACTIVE) {
      * @param request  request call
      * @param callback callback
      * @param <T>      Type of response data
-    </T> */
+     */
     @Synchronized
     fun <T> requestNow(request: Call<T>, callback: Callback<T>?) {
         request.enqueue(CallbackWrapperDelegate(callback))
