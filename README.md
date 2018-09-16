@@ -7,6 +7,12 @@ Java version is <a href="https://github.com/hieupham1993/retrofit2-queue">here</
 Add repository:
 ```groovy
 repositories {
+    jcenter()
+}
+```
+or
+```groovy
+repositories {
     maven {
         url "https://dl.bintray.com/hieupham1993/utilities" 
     }
