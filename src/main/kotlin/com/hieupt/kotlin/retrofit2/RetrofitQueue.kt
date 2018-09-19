@@ -93,16 +93,6 @@ class RetrofitQueue(maxActiveRequest: Int = DEFAULT_MAX_REQUEST_ACTIVE) {
     }
 
     /**
-     * Remove `request` from pending queue
-     *
-     * @param request Request need to remove
-     */
-    @Synchronized
-    fun removeRequest(request: Call<*>) {
-        requestQueue.removeIf { requestWrap -> requestWrap.request === request }
-    }
-
-    /**
      * Clear request queue. Executing request do not affect by this call.
      */
     @Synchronized
@@ -111,16 +101,17 @@ class RetrofitQueue(maxActiveRequest: Int = DEFAULT_MAX_REQUEST_ACTIVE) {
     }
 
     /**
-     * Cancel `request` if it is activating
-     *
-     * @param request Request need to cancel
+     * Remove a [request] from pending queue or cancel that if it is activating
      */
     @Synchronized
     fun cancel(request: Call<*>) {
-        val requestWrap = activeList.firstOrNull { it.request === request }
-        requestWrap?.let {
-            it.cancel()
-            activeList.remove(it)
+        val removeSuccess = requestQueue.removeIf { requestWrap -> requestWrap.request === request }
+        if (!removeSuccess) {
+            val requestWrap = activeList.firstOrNull { it.request === request }
+            requestWrap?.let {
+                it.cancel()
+                activeList.remove(it)
+            }
         }
     }
 
